@@ -4,6 +4,11 @@ import { getActiveSubscribers } from "./db/index.js";
 const TG_API = `https://api.telegram.org/bot${config.TELEGRAM_BOT_TOKEN}`;
 
 async function sendTelegram(chatId: string, text: string): Promise<boolean> {
+  if (!config.TELEGRAM_BOT_TOKEN) {
+    console.warn("[notify] TELEGRAM_BOT_TOKEN not set — skipping notification");
+    return false;
+  }
+
   try {
     const res = await fetch(`${TG_API}/sendMessage`, {
       method: "POST",

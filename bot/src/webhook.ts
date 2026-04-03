@@ -61,8 +61,8 @@ export function startWebhookServer(bot: Bot, port: number = 3002): void {
     res.end(JSON.stringify({ error: "Not found" }));
   });
 
-  server.listen(port, () => {
-    console.log(`[webhook] Alert server listening on :${port}`);
+  server.listen(port, "0.0.0.0", () => {
+    console.log(`[webhook] Alert server listening on 0.0.0.0:${port}`);
   });
 }
 

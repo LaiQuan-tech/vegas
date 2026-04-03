@@ -9,8 +9,8 @@ import { startWebhookServer } from "./webhook.js";
 // ── Validate env ─────────────────────────────────────────────────────
 const token = process.env.TELEGRAM_BOT_TOKEN;
 if (!token) {
-  console.error("[fatal] TELEGRAM_BOT_TOKEN is not set. Exiting.");
-  process.exit(1);
+  console.warn("[warn] TELEGRAM_BOT_TOKEN is not set. Bot cannot start without it.");
+  process.exit(0);
 }
 
 // ── Initialize bot ───────────────────────────────────────────────────

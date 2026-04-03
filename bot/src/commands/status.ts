@@ -1,6 +1,9 @@
 import { CommandContext, Context } from "grammy";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
+if (!process.env.BACKEND_URL) {
+  console.warn("[warn] BACKEND_URL not set, falling back to http://localhost:3001");
+}
 
 interface TableStatus {
   id: string;

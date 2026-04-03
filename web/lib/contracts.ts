@@ -2,12 +2,16 @@
 // CyberRoulette Contract ABIs & Addresses
 // ============================================================
 
-// ---- Placeholder addresses (replace with deployed contracts) ----
+// ---- Contract addresses (configurable via environment variables) ----
 export const ADDRESSES = {
-  cyberRoulette: '0x0000000000000000000000000000000000000001' as `0x${string}`,
-  legacyPot: '0x0000000000000000000000000000000000000002' as `0x${string}`,
-  factory: '0x0000000000000000000000000000000000000003' as `0x${string}`,
-  usdc: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913' as `0x${string}`, // USDC on Base
+  cyberRoulette: (process.env.NEXT_PUBLIC_CYBER_ROULETTE_ADDRESS ??
+    '0x0000000000000000000000000000000000000001') as `0x${string}`,
+  legacyPot: (process.env.NEXT_PUBLIC_LEGACY_POT_ADDRESS ??
+    '0x0000000000000000000000000000000000000002') as `0x${string}`,
+  factory: (process.env.NEXT_PUBLIC_FACTORY_ADDRESS ??
+    '0x0000000000000000000000000000000000000003') as `0x${string}`,
+  usdc: (process.env.NEXT_PUBLIC_USDC_ADDRESS ??
+    '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913') as `0x${string}`, // USDC on Base
 } as const;
 
 // ---- CyberRoulette ABI ----

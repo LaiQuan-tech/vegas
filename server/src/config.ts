@@ -8,21 +8,25 @@ function requireEnv(name: string): string {
   return value;
 }
 
+function optionalEnv(name: string, fallback: string = ""): string {
+  return process.env[name] ?? fallback;
+}
+
 export const config = {
-  /** PostgreSQL connection string */
+  /** PostgreSQL connection string (required) */
   DATABASE_URL: requireEnv("DATABASE_URL"),
 
-  /** WebSocket RPC endpoint for listening to on-chain events */
-  RPC_WSS_URL: requireEnv("RPC_WSS_URL"),
+  /** WebSocket RPC endpoint for listening to on-chain events (optional until contracts deployed) */
+  RPC_WSS_URL: optionalEnv("RPC_WSS_URL"),
 
-  /** CyberRoulette main contract address */
-  CONTRACT_ADDRESS: requireEnv("CONTRACT_ADDRESS"),
+  /** CyberRoulette main contract address (optional until contracts deployed) */
+  CONTRACT_ADDRESS: optionalEnv("CONTRACT_ADDRESS"),
 
-  /** CyberRoulette factory contract address */
-  FACTORY_ADDRESS: requireEnv("FACTORY_ADDRESS"),
+  /** CyberRoulette factory contract address (optional until contracts deployed) */
+  FACTORY_ADDRESS: optionalEnv("FACTORY_ADDRESS"),
 
-  /** Telegram Bot API token */
-  TELEGRAM_BOT_TOKEN: requireEnv("TELEGRAM_BOT_TOKEN"),
+  /** Telegram Bot API token (optional until bot configured) */
+  TELEGRAM_BOT_TOKEN: optionalEnv("TELEGRAM_BOT_TOKEN"),
 
   /** HTTP server port */
   PORT: parseInt(process.env["PORT"] ?? "3001", 10),

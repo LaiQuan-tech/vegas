@@ -1,6 +1,9 @@
 import { CommandContext, Context, InlineKeyboard } from "grammy";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
+if (!process.env.BACKEND_URL) {
+  console.warn("[warn] BACKEND_URL not set, falling back to http://localhost:3001");
+}
 const WEBAPP_URL = process.env.WEBAPP_URL || "https://cyberroulette.app";
 
 export async function subscribeCommand(ctx: CommandContext<Context>) {

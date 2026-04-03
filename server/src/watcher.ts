@@ -176,6 +176,11 @@ function scheduleReconnect(): void {
 }
 
 export async function startWatcher(): Promise<void> {
+  if (!config.RPC_WSS_URL || !config.CONTRACT_ADDRESS) {
+    console.warn("[watcher] RPC_WSS_URL or CONTRACT_ADDRESS not set — chain watcher disabled");
+    return;
+  }
+
   try {
     // Clean up previous provider
     if (provider) {
