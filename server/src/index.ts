@@ -9,14 +9,17 @@ import { registerWebSocket } from "./ws.js";
 import { startWatcher, stopWatcher } from "./watcher.js";
 
 async function main(): Promise<void> {
+  const isDev = process.env.NODE_ENV !== "production";
   const app = Fastify({
-    logger: {
-      level: "info",
-      transport: {
-        target: "pino-pretty",
-        options: { colorize: true },
-      },
-    },
+    logger: isDev
+      ? {
+          level: "info",
+          transport: {
+            target: "pino-pretty",
+            options: { colorize: true },
+          },
+        }
+      : { level: "info" },
   });
 
   // ── Plugins ──────────────────────────────
